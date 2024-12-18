@@ -133,7 +133,7 @@ function Home() {
       {/* Content Section */}
       <div className="bg-white p-6 rounded-lg shadow-lg">
         {isMapView ? (
-          <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
+          <LoadScript googleMapsApiKey="AIzaSyBgM-qPtgGcDc1VqDzDCDAcjQzuieT7Afo">
             <Map />
           </LoadScript>
         ) : (
