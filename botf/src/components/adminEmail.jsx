@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 
 const AdminEmail = () => {
-  const email = localStorage.getItem("teleNumber") || null; // Retrieve email from localStorage
+  const email = "david@gmail.com" // Retrieve email from localStorage
 
   const { data, isLoading, error } = useProperties();
   const navigate = useNavigate();
@@ -100,8 +100,8 @@ const AdminEmail = () => {
           <div className="grid grid-cols-1 gap-4">
             {data.map((property) => (
               <div
-                onClick={() => navigate(`/card/${property.id}`)}
-                key={property.id}
+              onClick={() => navigate(`/property/${property.id}`, { state: { property } })}
+              key={property.id}
                 className="flex p-4 bg-gray-50 border border-gray-200 rounded-md shadow hover:shadow-lg transition transform hover:scale-105 cursor-pointer"
               >
                 {/* Left: Image */}

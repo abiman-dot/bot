@@ -22,7 +22,7 @@ const DraftDetails = () => {
   // Save Updated Draft
   const handleSave = async () => {
     try {
-      await axios.put(`https://add-bot-server.vercel.app/api/residency/update/${editedDraft.id}`, editedDraft);
+      await axios.put(`http://localhost:3000/api/residency/update/${editedDraft.id}`, editedDraft);
       alert("Draft updated successfully!");
       setIsEditing(false);
     } catch (error) {
@@ -34,7 +34,7 @@ const DraftDetails = () => {
   // Reject Draft
   const handleReject = async () => {
     try {
-      await axios.delete(`https://add-bot-server.vercel.app/api/residency/delete/${draft.id}`);
+      await axios.delete(`http://localhost:3000/api/residency/delete/${draft.id}`);
       alert("Draft rejected successfully!");
       navigate(-1);
     } catch (error) {

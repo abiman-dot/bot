@@ -59,7 +59,8 @@ model Residency {
   heating     String[] @default([])
   termDuration     String?
   term     String?
-   selectedAdditional String[] @default([])
+  email    String?
+  selectedAdditional String[] @default([])
   description   String?
   status        String?
 

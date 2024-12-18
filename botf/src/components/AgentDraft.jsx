@@ -13,7 +13,7 @@ function AgentDraftDetails() {
     const fetchDrafts = async () => {
       try {
         const data = await getAllDraftAgent();
-        console.log(data)
+        console.log(data,"Abisheikkkkkkkkkkkkkkkkkkkkkkkkk")
         setDrafts(data);
       } catch (err) {
         setError("Failed to fetch drafts. Please try again later.",err);
@@ -44,7 +44,7 @@ console.log("bbbbbbbbbbbbbbbbb")
       }
 
       // Update status in the backend
-      await axios.post(`https://add-bot-server.vercel.app/api/residency/publish/${id}`);
+      await axios.post(`http://localhost:3000/api/residency/publish/${id}`);
 
       // Google Sheets Integration
       const googleSheetUrl =

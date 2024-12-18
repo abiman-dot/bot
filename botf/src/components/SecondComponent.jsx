@@ -54,17 +54,18 @@ const SecondComponent = () => {
   const role = localStorage.getItem("role")
   const handlePublish = async () => {
     const teleNumber = localStorage.getItem("teleNumber");
-
-    if (Array.isArray(secondFormData.video)) {
+    const email = localStorage.getItem("email")
+     if (Array.isArray(secondFormData.video)) {
       secondFormData.video = secondFormData.video[0] || ""; // Take the first video URL or set as empty string
     }
     try {
       console.log(secondFormData.video,"3333333333333333333333333333333333333333")
        const res = await axios.post(
-        "https://add-bot-server.vercel.app/api/residency/create",
+        "http://localhost:3000/api/residency/create",
         {
           teleNumber,
-          secondFormData,
+           secondFormData,
+           email,
         }
       );
        
@@ -557,6 +558,9 @@ const SecondComponent = () => {
             <option value="Land">Land</option>
           </select>
         </div>
+
+
+        
         <div>
           <select
             value={secondFormData.residencyType} // Bind to the 'address' field in state
@@ -574,6 +578,7 @@ const SecondComponent = () => {
             <option value="New">New</option>
             <option value="Old">Old</option>
             <option value="Mixed">Mixed</option>
+            <option value="historical">historical</option>
           </select>
         </div>
         <div>

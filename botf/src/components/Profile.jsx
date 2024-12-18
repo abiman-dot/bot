@@ -31,7 +31,7 @@ const userId = localStorage.getItem("userId")
     if (email) {
       try{
  
-        await axios.put("https://add-bot-server.vercel.app/api/user/updateuser",{
+        await axios.put("http://localhost:3000/api/user/updateuser",{
            email,
            userId
            

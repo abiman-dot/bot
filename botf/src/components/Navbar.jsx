@@ -6,7 +6,7 @@ import { FaRegUser } from "react-icons/fa";
 import "./Navbar.css"; // Ensure this file contains appropriate styles
 
 function Navbar() {
-  const teleNumber = localStorage.getItem("teleNumber"); // Retrieve teleNumber from localStorage
+  const role = localStorage.getItem("role"); // Retrieve teleNumber from localStorage
 
   return (
     <nav className="navbar">
@@ -29,7 +29,7 @@ function Navbar() {
 
       <NavLink to="/profile" className="nav-item" activeclassname="active">
         <FaRegUser size={24} />
-      </NavLink>
+      </NavLink>  
     </nav>
   );
 }

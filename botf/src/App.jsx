@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import LoginForm from "./components/LoginForm";
-import FirstComponent from "./components/FirstComponent";
+ import FirstComponent from "./components/FirstComponent";
 import SecondComponent from "./components/SecondComponent";
 import Navbar from "./components/Navbar";
 import Profile from "./components/Profile";
@@ -17,10 +16,13 @@ import AgentDraft from "./components/AgentDraft";
 import AgentCard from "./components/AgentCard";
 import DraftDetails from "./components/DraftDetails";
 import AgentDraftDetails from "./components/AgentDraft";
+import PropertyDetails from "./components/PropertyDetails";
 
 const App = () => {
   const queryClient = new QueryClient();
+  // const role = localStorage.getItem("role");
 
+  const role = "admin"
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
@@ -32,8 +34,14 @@ const App = () => {
             <Route path="/search" element={<Search />} />
             <Route path="/ads" element={<SecondComponent />} />
 
+            {/* Conditional Profile Page */}
+            <Route
+              path="/profile"
+              element={role === "admin" ? <AdminEmail /> : <Profile />}
+            />
+<Route path="/property/:id" element={<PropertyDetails />} />
+
             {/* Unrestricted Pages */}
-            <Route path="/profile" element={<Profile />} />
             <Route path="/favorites" element={<Favourite />} />
             <Route path="/card/:cardId" element={<CardDetails />} />
             <Route path="/agentPub/:id" element={<AgentCard />} />
