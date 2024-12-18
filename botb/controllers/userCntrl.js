@@ -13,31 +13,37 @@ export const createUser = asyncHandler(async (req, res) => {
       where: { teleNumber },
     });
 
+
+   
+
     if (userExists) {
       if (userExists.email) {
         const isAgent = userExists.email.includes("geomap");
 
-      
+       
 
         if (isAgent) {
           return res.status(200).json({
             message: "Agent",
+           email:userExists.email,
             agent: userExists,
           });
         }
       }
-      if (userExists.email.includes("david")) {
-        return res.status(200).json({
-          message: "Admin",
-          admin: userExists,
-        });
-      }
-
+ if (userExists.email.includes("david")) {
+          return res.status(200).json({
+            message: "Admin",
+           email:userExists.email,
+            admin: userExists,
+          });
+        }
       return res.status(200).json({
         message: "Logged in successfully",
         user: userExists,
       });
     }
+
+   
 
     // If user doesn't exist, create a new user
     const newUser = await prisma.user.create({
@@ -85,7 +91,7 @@ export const likes = asyncHandler(async (req, res) => {
 
   try {
     const alreadyLiked = await prisma.user.findUnique({
-      where: { teleNumber: email },
+      where: { email: email },
       select: { favoriteResidency: true },
     });
 
@@ -98,7 +104,7 @@ export const likes = asyncHandler(async (req, res) => {
     }
 
     await prisma.user.update({
-      where: { teleNumber: email },
+      where: { email: email },
       data: {
         favoriteResidency: { push: id },
       },
@@ -118,7 +124,7 @@ export const dislikes = asyncHandler(async (req, res) => {
 
   try {
     const user = await prisma.user.findUnique({
-      where: { teleNumber: email },
+      where: { email: email },
       select: { favoriteResidency: true },
     });
 
@@ -136,7 +142,7 @@ export const dislikes = asyncHandler(async (req, res) => {
     );
 
     await prisma.user.update({
-      where: { teleNumber: email },
+      where: { email: email },
       data: { favoriteResidency: updatedFavorites },
     });
 
@@ -151,7 +157,7 @@ export const allLikes = asyncHandler(async (req, res) => {
   const { email } = req.body;
   try {
     const likes = await prisma.user.findUnique({
-      where: { teleNumber: email },
+      where: { email: email },
       select: { favoriteResidency: true },
     });
     res.status(200).json(likes.favoriteResidency);
